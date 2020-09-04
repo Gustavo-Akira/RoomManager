@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.gustavoakira.reunionroom.dto.RoomDTO;
 import com.gustavoakira.reunionroom.exception.ResourceNotFoundException;
 import com.gustavoakira.reunionroom.model.Room;
 import com.gustavoakira.reunionroom.service.RoomService;
@@ -23,18 +24,18 @@ public class RoomController {
 	private RoomService roomService;
 	
 	@GetMapping("/rooms")
-	public List<Room> getRooms() {
+	public List<RoomDTO> getRooms() {
 		return roomService.getRooms();
 	}
 	
 	@PostMapping("/room")
-	public Room saveRoom(@RequestBody Room room) {
-		return roomService.saveRoom(room);
+	public RoomDTO saveRoom(@RequestBody RoomDTO roomDTO) {
+		return roomService.saveRoom(roomDTO);
 	}
 	
 	@PutMapping("/room/{id}")
-	public Room updateRoom(@RequestBody Room room,@PathVariable Long id) throws ResourceNotFoundException {
-		return roomService.updateRoom(room, id);
+	public RoomDTO updateRoom(@RequestBody RoomDTO roomDTO,@PathVariable Long id) throws ResourceNotFoundException {
+		return roomService.updateRoom(roomDTO, id);
 	}
 	
 	@DeleteMapping("/room/{id}")
